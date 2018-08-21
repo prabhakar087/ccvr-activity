@@ -1,0 +1,11 @@
+---
+# tasks file for awskeyupload
+
+- hosts: local
+  connection: local
+  tasks:
+          # upload ssh key                
+          - name: create key pair using key_material obtained using 'file' lookup plugin
+            ec2_key:
+              name: cc-interview-prabhakar
+              key_material: "{{ lookup('file', '/home/opstree3/Downloads/cc-interview-prabhakar.pub') }}"

@@ -1,0 +1,22 @@
+---
+# tasks file for awskeyupload
+
+- hosts: local
+  connection: local
+  tasks:
+          - name: create the ec2 instance
+            ec2:
+              key_name: cc-interview-prabhakar
+              instance_type: t2.nano
+              user_data: "{{ lookup('file', '/home/opstree3/Downloads/user-data.sh') }}"
+              region: ap-south-1
+              image: ami-dd3442b2
+              wait: yes
+              wait_timeout: 500
+              count: 1
+              instance_tags:
+                 owner: prabhakar
+              monitoring: no
+              vpc_subnet_id: subnet-79cf2910
+              assign_public_ip: yes
+

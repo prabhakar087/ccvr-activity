@@ -1,0 +1,17 @@
+---
+- hosts: webserver
+  tasks:
+    - name: ensure nginx is at the latest version
+      apt: name=nginx state=latest
+      become: yes
+
+    - copy: 
+        src: ../templates/index.html.j2
+        dest: /var/www/html/index.html
+      become: yes
+    - name: start nginx
+      service:
+          name: nginx
+          state: started
+      become: yes
+

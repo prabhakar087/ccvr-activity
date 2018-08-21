@@ -1,0 +1,19 @@
+---
+# tasks file for awskeyupload
+
+- hosts: local
+  connection: local
+  tasks:
+
+          - name: start the ec2 instance
+            ec2_instance:
+              name: CCInterview
+              key_name: cc-interview-prabhakar
+              instance_type: t2.nano
+              security_group: sg-c61ab8af
+              region: ap-south-1
+              image_id: ami-dd3442b2
+
+              vpc_subnet_id: subnet-79cf2910
+              network:
+                assign_public_ip: true
